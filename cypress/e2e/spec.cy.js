@@ -1,17 +1,15 @@
 describe(`My First Test`, () => {
   it(`Gets, types and asserts`, () => {
-    cy.visit(`https://example.cypress.io`)
+    cy.visit(`./index.html`)
 
-    cy.contains(`type`).click()
 
-    // Should be on a new URL which
-    // includes '/commands/actions'
-    cy.url().should(`include`, `/commands/actions`)
+    cy.get(`#username`).type(`Ann`)
 
-    // Get an input, type into it
-    cy.get(`.action-email`).type(`fake@email.com`)
+    cy.get(`#start-game-button`).click()
+    cy.get(`#user-selection`).select(`Paper`)
+    cy.get(`#go-button`).click()
 
-    //  Verify that the value has been updated
-    cy.get(`.action-email`).should(`have.value`, `fake@email.com`)
+
+    cy.get(`#game-history`).contains(`Ann`)
   })
 })
